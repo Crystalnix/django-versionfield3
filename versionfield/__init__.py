@@ -5,7 +5,7 @@ from utils import convert_version_string_to_int, convert_version_int_to_string
 import forms
 
 
-class VersionField(models.PositiveIntegerField):
+class VersionField(models.BigIntegerField):
     """
     A Field where version numbers are input/output as strings (e.g. 3.0.1)
     but stored in the db as converted integers for fast indexing
@@ -20,7 +20,7 @@ class VersionField(models.PositiveIntegerField):
 
     def to_python(self, value):
         if isinstance(value, Version):
-            return value
+            return int(value)
 
         if isinstance(value, basestring):
             return Version(value, self.number_bits)
@@ -41,8 +41,8 @@ class VersionField(models.PositiveIntegerField):
 
     def formfield(self, **kwargs):
         defaults = {
-        'form_class': forms.VersionField,
-        'number_bits': self.number_bits
+            'form_class': forms.VersionField,
+            'number_bits': self.number_bits
         }
         defaults.update(kwargs)
         return super(VersionField, self).formfield(**defaults)
@@ -56,11 +56,11 @@ try:
 
     rules = [
         (
-        (VersionField,),
-        [],
-        {
-        "number_bits": ["number_bits", {"default": DEFAULT_NUMBER_BITS}],
-        },
+            (VersionField,),
+            [],
+            {
+                "number_bits": ["number_bits", {"default": DEFAULT_NUMBER_BITS}],
+            },
         )
     ]
     add_introspection_rules(rules, ["^versionfield"])

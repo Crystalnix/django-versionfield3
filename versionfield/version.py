@@ -1,5 +1,6 @@
+# coding: utf8
+
 from .utils import convert_version_string_to_int, convert_version_int_to_string
-from .constants import DEFAULT_NUMBER_BITS
 
 
 class Version(object):
