@@ -19,6 +19,8 @@ setup(
     author = 'Tom Hoddes',
     packages = find_packages(),
     include_package_data = True,
+    tests_require=['Django'],
+    test_suite='run_tests.main',
     classifiers = [
         'Development Status :: 3 - Alpha',
         'Framework :: Django',
