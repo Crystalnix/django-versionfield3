@@ -12,9 +12,9 @@ except ImportError:
 import os
 
 setup(
-    name="django-versionfield2",
-    version="0.1.0",
-    url="https://github.com/Crystalnix/django-versionfield2",
+    name="django-versionfield3",
+    version="0.1.1",
+    url="https://github.com/Crystalnix/django-versionfield3",
     license="BSD",
     description="A DB Independent Custom Django Field for storing Version numbers for fast indexing",
     author="Egor Yurtaev",
