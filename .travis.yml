@@ -1,0 +1,23 @@
+language: python
+
+sudo: false
+
+env:
+  - TOX_ENV=py27-django16
+  - TOX_ENV=py27-django17
+  - TOX_ENV=py27-django18
+  - TOX_ENV=py33-django17
+  - TOX_ENV=py33-django18
+  - TOX_ENV=py34-django17
+  - TOX_ENV=py34-django18
+  - TOX_ENV=pypy-django17
+  - TOX_ENV=pypy-django18
+  - TOX_ENV=pypy3-django17
+  - TOX_ENV=pypy3-django18
+
+
+install:
+  - pip install tox
+
+script:
+    - tox -e $TOX_ENV
