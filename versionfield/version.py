@@ -1,4 +1,7 @@
 # coding: utf8
+from builtins import str
+from past.builtins import basestring
+from future.utils import python_2_unicode_compatible
 
 from .utils import convert_version_string_to_int, convert_version_int_to_string
 
@@ -12,14 +15,12 @@ class Version(object):
         self.number_bits = number_bits
         self.internal_integer = convert_version_string_to_int(string, number_bits)
 
-    def __unicode__(self):
-        return unicode(convert_version_int_to_string(self.internal_integer, self.number_bits))
-
+    @python_2_unicode_compatible
     def __str__(self):
-        return self.__unicode__()
+        return str(convert_version_int_to_string(self.internal_integer, self.number_bits))
 
     def __repr__(self):
-        return self.__unicode__()
+        return self.__str__()
 
     def __int__(self):
         return self.internal_integer

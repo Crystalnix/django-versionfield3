@@ -19,7 +19,7 @@ def convert_version_string_to_int(string, number_bits):
     #convert to single int and return
     number = 0
     total_bits = 0
-    for num, bits in reversed(zip(numbers, number_bits)):
+    for num, bits in reversed(list(zip(numbers, number_bits))):
         max_num = (bits + 1) - 1
         if num >= 1 << max_num:
             raise ValueError(

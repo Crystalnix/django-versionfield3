@@ -1,10 +1,5 @@
 from django.test import TestCase
-from django.db import models
-from .. import VersionField
-
-
-class DummyModel(models.Model):
-    version = VersionField()
+from .models import DummyModel, DummyModelCustomBit
 
 
 class VersionFieldTest(TestCase):
@@ -45,10 +40,6 @@ class VersionFieldTest(TestCase):
         except ValueError:
             error_occured = True
         self.assertTrue(error_occured)
-
-
-class DummyModelCustomBit(models.Model):
-    version = VersionField(number_bits=(8, 16, 8))
 
 
 class VersionFieldCustomBitsTest(TestCase):

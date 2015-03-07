@@ -1,8 +1,10 @@
+from builtins import str
+
 from django import forms
 from django.forms.widgets import TextInput
-from version import Version
-from constants import DEFAULT_NUMBER_BITS
-from utils import convert_version_int_to_string
+from .version import Version
+from .constants import DEFAULT_NUMBER_BITS
+from .utils import convert_version_int_to_string
 
 
 class VersionField(forms.IntegerField):
@@ -19,7 +21,7 @@ class VersionField(forms.IntegerField):
         if not value:
             return None
 
-        if isinstance(value, basestring):
+        if isinstance(value, str):
             return int(Version(value, self.number_bits))
 
         return Version(convert_version_int_to_string(value, self.number_bits), self.number_bits)
