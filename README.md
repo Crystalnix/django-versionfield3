@@ -1,20 +1,39 @@
-[![Build Status](https://travis-ci.org/Crystalnix/django-versionfield2.svg)](https://travis-ci.org/Crystalnix/django-versionfield2)
+[![Build Status](https://travis-ci.org/Crystalnix/django-versionfield3.svg)](https://travis-ci.org/Crystalnix/django-versionfield3)
 
-django-versionfield
-====
+# django-versionfield3
 
-Usage:
-    from versionfield import VersionField
+## Installation
 
-    class SomeModel(models.Model):
-        version = VersionField()
+```shell
+pip install django-versionfield3
+```
+
+Add `versionfield` to your `INSTALLED_APPS` setting.
+
+```python
+INSTALLED_APPS = (
+    ...
+    'versionfield',
+)
+```
+
+### Usage
+
+```python
+from versionfield import VersionField
+
+class SomeModel(models.Model):
+    version = VersionField()
+```
 
 Sample Queries:
-    SomeModel.objects.filter(version__gt="1.0.0")
-    SomeModel.objects.filter(version__gt="1.0")
-    
-License
--------
+
+```python
+SomeModel.objects.filter(version__gt="1.0.0")
+SomeModel.objects.filter(version__gt="1.0")
+```
+
+# License
 
 django-versionfield is distributed under a BSD-style license.
 
