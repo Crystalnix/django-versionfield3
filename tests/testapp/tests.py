@@ -1,4 +1,6 @@
 from django.test import TestCase
+from django.core.exceptions import ValidationError
+
 from .models import DummyModel, DummyModelCustomBit
 
 
@@ -37,7 +39,7 @@ class VersionFieldTest(TestCase):
         error_occured = False
         try:
             overflow = DummyModel.objects.create(version="1.999.1")
-        except ValueError:
+        except (ValidationError, ValueError):
             error_occured = True
         self.assertTrue(error_occured)
 

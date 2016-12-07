@@ -22,7 +22,7 @@ setup(
     packages=["versionfield"],
     include_package_data=True,
     install_requires=[
-        "future>=0.14.3",
+        "future>=0.16.0",
     ],
     classifiers=[
         "Development Status :: 5 - Production/Stable",
