@@ -2,6 +2,8 @@ from builtins import str
 
 from django import forms
 from django.forms.widgets import TextInput
+from django.core.exceptions import ValidationError
+
 from .version import Version
 from .constants import DEFAULT_NUMBER_BITS
 from .utils import convert_version_int_to_string
@@ -22,7 +24,11 @@ class VersionField(forms.IntegerField):
             return None
 
         if isinstance(value, str):
-            return int(Version(value, self.number_bits))
+            try:
+                return int(Version(value, self.number_bits))
+            except ValueError:
+                max_value = '.'.join([str(2 ** e - 1) for e in self.number_bits])
+                raise ValidationError("Max version is {0}".format(max_value))
 
         return Version(convert_version_int_to_string(value, self.number_bits), self.number_bits)
 

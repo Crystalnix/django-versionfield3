@@ -4,6 +4,8 @@ from future.utils import python_2_unicode_compatible
 
 import django
 from django.db import models
+from django.core.exceptions import ValidationError
+
 from .constants import DEFAULT_NUMBER_BITS
 from .version import Version
 from .utils import convert_version_string_to_int, convert_version_int_to_string
@@ -53,7 +55,11 @@ class VersionField(BaseField):
 
     def get_prep_value(self, value):
         if isinstance(value, basestring):
-            return int(Version(value, self.number_bits))
+            try:
+                return int(Version(value, self.number_bits))
+            except ValueError:
+                max_value = '.'.join([str(2 ** e - 1) for e in self.number_bits])
+                raise ValidationError("Max version is {0}".format(max_value))
 
         if value is None:
             return None
