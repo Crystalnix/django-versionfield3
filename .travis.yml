@@ -25,5 +25,3 @@ install:
 
 script:
     - tox -e $TOX_ENV
-group: deprecated-2017Q4
-dist: precise
