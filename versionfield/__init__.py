@@ -41,6 +41,18 @@ else:
 
             return Version(convert_version_int_to_string(value, self.number_bits), self.number_bits)
 
+        def to_python(self, value):
+            if isinstance(value, Version):
+                return int(value)
+
+            if isinstance(value, basestring):
+                return Version(value, self.number_bits)
+
+            if value is None:
+                return None
+
+            return int(Version(convert_version_int_to_string(value, self.number_bits), self.number_bits))
+
 
 class VersionField(BaseField):
     """
