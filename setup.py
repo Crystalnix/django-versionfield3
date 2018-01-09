@@ -13,7 +13,7 @@ import os
 
 setup(
     name="django-versionfield3",
-    version="0.1.6",
+    version="0.1.8",
     url="https://github.com/Crystalnix/django-versionfield3",
     license="BSD",
     description="A DB Independent Custom Django Field for storing Version numbers for fast indexing",
